@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: apoio_aprendizagem_local_docs
+    container_name: apoio_aprendizagem_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./apoio_aprendizagem:/app/apoio_aprendizagem:z
+    ports:
+      - '9000:9000'
+    command: /start-docs

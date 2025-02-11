@@ -1,36 +1,24 @@
 from django.contrib import admin
-from .models import Alternativa, Pergunta, Conteudo
-
-
-class AlternativaInline(admin.TabularInline):
-    """
-    Inline para exibir Alternativa dentro de Pergunta no painel admin.
-    """
-    model = Alternativa
-    extra = 4
-    min_num = 2
-    max_num = 4
-
-
-@admin.register(Alternativa)
-class AlternativaAdmin(admin.ModelAdmin):
-    """
-    Admin para o model Alternativa.
-    """
-    list_display = ('texto', 'pergunta', 'correta')
-    list_editable = ('correta',)
-    search_fields = ('texto',)
+from .models import Pergunta, Conteudo
 
 
 @admin.register(Pergunta)
 class PerguntaAdmin(admin.ModelAdmin):
-    """
-    Admin para o model Pergunta.
-    """
-    inlines = [AlternativaInline]
-    list_display = ('texto', 'conteudo', 'nivel', 'experiencia')
-    list_filter = ('conteudo', 'nivel')
-    search_fields = ('texto',)
+    list_display = ('enunciado', 'nivel', 'conteudo', 'alternativa_correta')
+    list_filter = ('nivel', 'conteudo')
+    search_fields = ('enunciado',)
+    fieldsets = (
+        (None, {
+            'fields': ('enunciado', 'imagem', 'nivel', 'conteudo')
+        }),
+        ('Alternativas', {
+            'fields': (
+                ('alternativa_a', 'alternativa_b'),
+                ('alternativa_c', 'alternativa_d'),
+                'alternativa_correta'
+            ),
+        }),
+    )
 
 
 @admin.register(Conteudo)

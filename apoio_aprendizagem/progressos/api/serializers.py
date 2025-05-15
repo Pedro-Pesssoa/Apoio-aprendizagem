@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ProgressoUsuario
+from ..models import ProgressoUsuario
 
 class ProgressoUsuarioSerializer(serializers.ModelSerializer):
     """

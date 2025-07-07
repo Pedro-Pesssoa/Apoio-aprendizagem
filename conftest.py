@@ -1,0 +1,15 @@
+import sys
+import os
+import django
+
+# Ajuste o caminho raiz
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.abspath(os.path.join(BASE_DIR, '.'))
+sys.path.insert(0, ROOT_DIR)
+
+# Defina o DJANGO_SETTINGS_MODULE manualmente
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.base')
+os.environ.setdefault("DJANGO_SECRET_KEY", "test-secret")
+
+# Configure o Django
+django.setup()

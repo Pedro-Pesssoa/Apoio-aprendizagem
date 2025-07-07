@@ -3,8 +3,13 @@
 
 from decouple import config
 from pathlib import Path
+import os
 
 import environ
+
+os.environ.setdefault("DJANGO_SECRET_KEY", "test-secret")
+
+env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # apoio_aprendizagem/

@@ -13,7 +13,8 @@ class ProgressoUsuarioSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         """
         Personaliza a representação dos dados de progresso.
-        Para usuários comuns, remove informações sensíveis como nível atual e XP acumulado.
+        Para usuários comuns, remove informações sensíveis 
+        como nível atual e XP acumulado.
         """
         representation = super().to_representation(instance)
         request = self.context.get('request')
@@ -31,7 +32,8 @@ class ProgressoUsuarioSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """
-        Validação personalizada para garantir que o JSONField esteja no formato correto.
+        Validação personalizada para garantir que o JSONField 
+        esteja no formato correto.
         """
         dados_progresso = data.get('dados_progresso', {})
         for conteudo_id, progress in dados_progresso.items():

@@ -55,14 +55,13 @@ class ProgressoUsuario(models.Model):
             conteudo_progresso["nivel_atual"] = "M"
         else:
             conteudo_progresso["nivel_atual"] = "F"
-
-        # Salva as alterações
         self.save()
 
     def verificar_pergunta_respondida(self, conteudo_id, pergunta_id):
         """
-        Verifica se o usuário já respondeu a uma pergunta específica de um conteúdo.
-        Retorna True se a pergunta já foi respondida, False caso contrário.
+        Verifica se o usuário já respondeu a uma pergunta 
+        específica de um conteúdo.Retorna True se a pergunta 
+        já foi respondida, False caso contrário.
         """
         conteudo_progresso = self.dados_progresso.get(str(conteudo_id), {})
         perguntas_respondidas = conteudo_progresso.get("perguntas_respondidas", [])

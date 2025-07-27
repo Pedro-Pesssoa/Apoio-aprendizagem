@@ -3,8 +3,13 @@
 
 from decouple import config
 from pathlib import Path
+import os
 
 import environ
+
+os.environ.setdefault("DJANGO_SECRET_KEY", "test-secret")
+
+env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # apoio_aprendizagem/
@@ -80,7 +85,8 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
-    "apoio_aprendizagem.perguntas"
+    "apoio_aprendizagem.perguntas",
+    "apoio_aprendizagem.progressos"
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
